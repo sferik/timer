@@ -78,23 +78,18 @@
       var interval;
 
       var tick = function() {
-        box.innerHTML = time;
-        switch(time) {
-          case 0:
-            container.className = "red";
-            break;
-          case 1:
-            container.className = "orange";
-            break;
-          case 2:
-            container.className = "yellow";
-            break;
-          case 3:
-            container.className = "light-green";
-            break;
-          default:
-            container.className = defaultClass;
+        if(time <= 0) {
+          container.className = "red";
+        } else if(time == 1) {
+          container.className = "orange";
+        } else if(time == 2) {
+          container.className = "yellow";
+        } else if(time == 3) {
+          container.className = "light-green";
+        } else {
+          container.className = defaultClass;
         }
+        box.innerHTML = time;
         time--;
       };
 
