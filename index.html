@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
   <head>
+    <title>Timer</title>
 
     <style type="text/css">
       .green {
@@ -77,6 +78,11 @@
       var time;
       var interval;
 
+      var updateText = function(value) {
+        box.innerHTML = value;
+        document.title = value;
+      }
+
       var tick = function() {
         if(time <= 0) {
           container.className = "red";
@@ -89,7 +95,7 @@
         } else {
           container.className = defaultClass;
         }
-        box.innerHTML = time;
+        updateText(time);
         time--;
       };
 
