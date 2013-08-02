@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <style type="text/css">
+      #container {
+        background-color: #00ff51;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        position: fixed;
+      }
+      #button {
+        border: 0;
+        display: block;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 5em;
+        font-weight: 100;
+        letter-spacing: 3px;
+        margin: auto;
+        position: fixed;
+        top: 0;
+        width: 100%;
+      }
+      #box {
+        color: white;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 1000px;
+        font-weight: 100;
+        line-height: 0;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1 id="box">
+        5
+      </h1>
+      <button id="button">
+        Start
+      </button>
+    </div>
+    <script type="text/javascript">
+      var container = document.getElementById("container");
+      var button = document.getElementById("button");
+      var box = document.getElementById("box");
+      var time;
+      var interval;
+      var tick = function(box) {
+        time--;
+        console.log(time);
+        minutes = parseInt(time / 60) + 1;
+        text = minutes;
+        if(time < 0) {
+          text = 0;
+          container.style.backgroundColor = "#ff0000";
+        } else if(time < 60) {
+          container.style.backgroundColor = "#e86d0c";
+        } else if(time < 120) {
+          container.style.backgroundColor = "#ffca00";
+        } else if(time < 180) {
+          container.style.backgroundColor = "#9ee80c";
+        }
+        box.innerHTML = text;
+      }
+      button.onclick = function() {
+        this.innerHTML = "Reset";
+        time = 300; // seconds
+        clearInterval(interval);
+        interval = setInterval(function(){tick(box)}, 1000);
+      }
+    </script>
+  </body>
+</html>
