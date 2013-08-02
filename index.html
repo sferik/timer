@@ -73,7 +73,6 @@
       var button = document.getElementById("button");
       var box = document.getElementById("box");
       var defaultClass = container.className;
-      var defaultText = button.innerHTML;
       var defaultTime = parseInt(box.innerHTML); // seconds
       var time;
       var interval;
@@ -82,10 +81,7 @@
         box.innerHTML = time;
         switch(time) {
           case 0:
-            box.innerHTML = time;
             container.className = "red";
-            button.innerHTML = defaultText;
-            clearInterval(interval);
             break;
           case 1:
             container.className = "orange";
