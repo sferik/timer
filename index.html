@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Timer</title>
+    <meta name="viewport" content="width=640" />
 
     <style type="text/css">
       .green {
@@ -41,14 +42,16 @@
         font-size: 4em;
         font-weight: 100;
         letter-spacing: 3px;
-        margin: auto;
+        margin: 0;
         left: 0;
         right: 0;
+        padding: 22px 0;
         position: fixed;
       }
 
       #box {
         color: white;
+        display: block;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 40em;
         font-weight: 100;
@@ -78,10 +81,13 @@
       var time;
       var interval;
 
-      var updateText = function(value) {
-        box.innerHTML = value;
-        document.title = value;
-      }
+      button.onclick = function() {
+        this.innerHTML = "Reset";
+        time = defaultTime;
+        clearInterval(interval);
+        tick();
+        interval = setInterval(tick, 60000); // one minute
+      };
 
       var tick = function() {
         if(time <= 0) {
@@ -99,13 +105,10 @@
         time--;
       };
 
-      button.onclick = function() {
-        this.innerHTML = "Reset";
-        time = defaultTime;
-        clearInterval(interval);
-        tick();
-        interval = setInterval(tick, 60000); // one minute
-      };
+      var updateText = function(value) {
+        box.innerHTML = value;
+        document.title = value;
+      }
     </script>
 
   </body>
