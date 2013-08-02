@@ -70,13 +70,12 @@
       var container = document.getElementById("container");
       var button = document.getElementById("button");
       var box = document.getElementById("box");
+      var initial = parseInt(box.innerHTML); // seconds
       var time;
       var interval;
 
       var tick = function() {
-        time--;
-        minutes = parseInt(time / 60) + 1;
-        box.innerHTML = minutes;
+        box.innerHTML = time;
         switch(time) {
           case 0:
             box.innerHTML = "0";
@@ -84,24 +83,28 @@
             button.innerHTML = "Start";
             clearInterval(interval);
             break;
-          case 59:
+          case 1:
             container.className = "orange";
             break;
-          case 119:
+          case 2:
             container.className = "yellow";
             break;
-          case 179:
+          case 3:
             container.className = "light-green";
             break;
+          default:
+            container.className = "green";
         }
-      }
+        time--;
+      };
 
       button.onclick = function() {
         this.innerHTML = "Reset";
-        time = 300; // seconds
+        time = initial;
         clearInterval(interval);
-        interval = setInterval(tick, 1000);
-      }
+        tick();
+        interval = setInterval(tick, 60000); // one minute
+      };
     </script>
 
   </body>
