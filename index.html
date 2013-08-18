@@ -70,12 +70,17 @@
       <button id="button">
         Start
       </button>
+      <!-- Siren from http://soundbible.com/1355-Warning-Siren.html -->
+      <audio id="alarm">
+        <source src="siren.mp3" />
+      </audio>
     </div>
 
     <script type="text/javascript">
       var container = document.getElementById("container");
       var button = document.getElementById("button");
       var box = document.getElementById("box");
+      var audio = document.getElementById("alarm");
       var defaultClass = container.className;
       var defaultTime = parseInt(box.innerHTML); // seconds
       var time;
@@ -83,6 +88,8 @@
 
       button.onclick = function() {
         this.innerHTML = "Reset";
+        audio.pause();
+        audio.currentTime = 0
         time = defaultTime;
         clearInterval(interval);
         tick();
@@ -92,6 +99,7 @@
       var tick = function() {
         if(time <= 0) {
           container.className = "red";
+          audio.play();
         } else if(time == 1) {
           container.className = "orange";
         } else if(time == 2) {
